@@ -15,15 +15,17 @@ import { Position } from 'src/app/model/position';
 })
 export class ListComponent implements OnInit{
 
-  positions: Position[] = [];
-  positionData: Position[] = [];
+  position?: Position;
+
 
   constructor(private dataServ: DataService){}
 
 
   ngOnInit(): void {
-    this.dataServ.positions.subscribe(pos => this.positions = pos);
-    console.log(this.positionData);
+    this.dataServ.getAllWheaterData().subscribe(pos => {
+      this.position = pos;
+    })
+
   }
 
 }
